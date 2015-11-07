@@ -1,0 +1,3 @@
+[submodule "vendor/masonry"]
+	path = vendor/masonry
+	url = https://github.com/desandro/masonry.git
