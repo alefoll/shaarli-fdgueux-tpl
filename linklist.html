@@ -191,9 +191,22 @@
 
 				return false;
 			}
+
+			function thumbnailYoutubeHD() {
+				var thumbnail = document.querySelectorAll('.link--thumbnail img');
+
+				for(var i = 0; i < thumbnail.length; i++) {
+					if (/youtube.com/.test(thumbnail[i].src)) {
+						thumbnail[i].src = thumbnail[i].src.replace("/default.jpg", "/hqdefault.jpg");
+						thumbnail[i].classList.add("unblur");
+					}
+				}
+			}
+
+			thumbnailYoutubeHD();
 		</script>
 
-		<script src="inc/awesomplete.min.js#"></script>
+		<script src="inc/awesomplete.min.js"></script>
 		<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
 		<script>
 			var masonry = new Masonry('.linkscontainer', {
