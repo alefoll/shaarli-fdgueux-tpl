@@ -12,8 +12,8 @@
 
 			<div class="search">
 				<form class="search--search" method="GET" class="searchform" name="searchform">
-					<input class="search--search_input" type="text" tabindex="1" name="searchterm" placeholder="Search text" value="">
-					<input class="search--submit" type="submit" value="Search" class="bigbutton">
+					<input type="text" tabindex="1" name="searchterm" placeholder="Search text" value="">
+					<input type="submit" value="Search">
 				</form>
 
 				<form class="search--tag" method="GET" class="tagfilter" name="tagfilter">
@@ -23,7 +23,7 @@
 						{loop="$tags"}<option>{$key}</option>{/loop}
 					</datalist>
 
-					<input class="search--submit" type="submit" value="Search">
+					<input type="submit" value="Search">
 				</form>
 			</div>
 		</div>
