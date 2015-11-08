@@ -71,7 +71,7 @@ input {
 }
 
 .link.private {
-	background-color: #f44336;
+	background-color: #ff5252;
 }
 
 .link--title {
@@ -215,7 +215,7 @@ input {
 }
 
 .link.private .link--admin_delete:hover {
-	box-shadow: 0 0 2px #ffffff;
+	background-color: #c62828;
 }
 
 .link--social_a {
