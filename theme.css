@@ -167,15 +167,12 @@ input[type="checkbox"]:checked + label::after {
 .input-container label {
 	order: 1;
 	pointer-events: none;
-	padding-left: 2px;
 	font-size: 16px;
 	z-index: 1;
-	/*transform: translate3d(0px, 6px, 0px) scale(0.75);
-	transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
-	transform-origin: left top 0px;*/
 	transform: translate3d(0px, 6px, 0px) scale(0.75);
 	position: absolute;
 	bottom: 100%;
+	left: 0;
 	color: rgba(0, 0, 0, 0.26);
 }
 
@@ -262,12 +259,12 @@ input[type="checkbox"]:checked + label::after {
 
 .card--title {
 	padding: 16px;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 .card--title_a {
 	color: #212121;
-	font-size: 22px;
-	font-weight: bold;
 }
 
 .card.private,

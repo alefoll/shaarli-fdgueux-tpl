@@ -46,10 +46,13 @@
 		{/if}
 
 		<div class="cards--container">
-			<div class="grid-sizer"></div>
-			<div class="gutter-sizer"></div>
+			{if="count($links)>1"}
+				<div class="grid-sizer"></div>
+				<div class="gutter-sizer"></div>
+			{/if}
+
 			{loop="links"}
-				<div class="card column3{if="$value.class"} {$value.class}{/if}">
+				<div class="card{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
 					<div class="card--container">
 						<a id="{$value.linkdate|smallHash}"></a>
 
@@ -206,15 +209,18 @@
 		</script>
 
 		<script src="../../inc/awesomplete.min.js"></script>
-		<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
-		<script>
-			var masonry = new Masonry('.cards--container', {
-				itemSelector: '.card',
-				columnWidth: '.grid-sizer',
-				gutter: '.gutter-sizer',
-				transitionDuration: 0,
-				percentPosition: true
-			});
-		</script>
+
+		{if="count($links)>1"}
+			<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
+			<script>
+				var masonry = new Masonry('.cards--container', {
+					itemSelector: '.card',
+					columnWidth: '.grid-sizer',
+					gutter: '.gutter-sizer',
+					transitionDuration: 0,
+					percentPosition: true
+				});
+			</script>
+		{/if}
 	</body>
 </html>
