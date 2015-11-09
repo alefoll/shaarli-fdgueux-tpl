@@ -52,7 +52,7 @@
 			{/if}
 
 			{loop="links"}
-				<div class="card{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
+				<div class="card link{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
 					<div class="card--container">
 						<a id="{$value.linkdate|smallHash}"></a>
 
