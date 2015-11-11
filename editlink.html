@@ -22,19 +22,21 @@
 							<label for="edit--url_input">URL</label>
 						</div>
 
-						<div class="input-separator"></div>
+						<div class="input-sepatator"></div>
 
 						<div class="input-container">
 							<input id="lf_title" type="text" name="lf_title" value="{$link.title}" required>
 							<label for="lf_title">Title</label>
 						</div>
 
+						<div class="input-sepatator"></div>
 
 						<div class="input-container">
 							<textarea id="edit--desc_textarea" name="lf_description" rows="4" cols="25">{$link.description}</textarea>
 							<label for="edit--desc_textarea">Description</label>
 						</div>
 
+						<div class="input-sepatator"></div>
 
 						<div class="input-container">
 							<input id="edit--tags_input" class="awesomplete" type="text" tabindex="2" name="lf_tags" value="{$link.tags}" list="edit--tags_list" autocomplete="off" data-multiple>
@@ -44,6 +46,8 @@
 								{loop="$tags"}<option>{$key}</option>{/loop}
 							</datalist>
 						</div>
+
+						<div class="input-sepatator"></div>
 
 						{if="($link_is_new && $GLOBALS['privateLinkByDefault']==true) || $link.private == true"}
 							<input type="checkbox" checked="checked" name="lf_private" id="lf_private">
