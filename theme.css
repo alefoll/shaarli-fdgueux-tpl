@@ -11,6 +11,11 @@ body {
 
 #pageheader {
 	background: #eeeeee;
+	box-shadow: none;
+}
+
+div.awesomplete > ul {
+	z-index: 5;
 }
 
 input {
@@ -428,6 +433,11 @@ input[type="checkbox"]:checked + label::after {
 .card.private .card--social_img {
 	filter: invert(1);
 	-webkit-filter: invert(1);
+}
+
+.card--edit {
+	padding: 16px;
+	margin-bottom: 0px;
 }
 
 #editcardform label {

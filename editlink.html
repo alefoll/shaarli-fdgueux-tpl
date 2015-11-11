@@ -7,11 +7,13 @@
 	</head>
 
 	<body>
-		<div id="pageheader">
-			{if="$source !== 'firefoxsocialapi'"}
+		{if="$source !== 'firefoxsocialapi'"}
+			<div id="pageheader">
 				{include="page.header"}
-			{/if}
+			</div>
+		{/if}
 
+		<div class="card--edit">
 			<div class="card">
 				<form method="post" name="linkform">
 					<div class="card--content">
@@ -39,12 +41,8 @@
 						<div class="input-sepatator"></div>
 
 						<div class="input-container">
-							<input id="edit--tags_input" class="awesomplete" type="text" tabindex="2" name="lf_tags" value="{$link.tags}" list="edit--tags_list" autocomplete="off" data-multiple>
+							<input id="edit--tags_input" class="awesomplete" type="text" tabindex="2" data-list="{loop="$tags"}{$key}, {/loop}" name="lf_tags" value="{$link.tags}" autocomplete="off" data-multiple>
 							<label for="edit--tags_input">Tags</label>
-
-							<datalist id="edit--tags_list">
-								{loop="$tags"}<option>{$key}</option>{/loop}
-							</datalist>
 						</div>
 
 						<div class="input-sepatator"></div>
@@ -80,5 +78,40 @@
 		{/if}
 
 		<script src="../../inc/awesomplete.min.js"></script>
+
+		{if="($GLOBALS['config']['OPEN_SHAARLI'] || isLoggedIn())"}
+			<script>
+				$ = Awesomplete.$;
+
+				awesomplete = new Awesomplete($('input[data-multiple]'), {
+					filter: function(text, input) {
+						return Awesomplete.FILTER_CONTAINS(text, input.match(/[^ ]*$/)[0]);
+					},
+					replace: function(text) {
+						var before = this.input.value.match(/^.+ \s*|/)[0];
+						this.input.value = before + text + " ";
+					}
+				});
+
+				var input = document.getElementById('edit--tags_input');
+
+				input.addEventListener('input', function() {
+					proposedTags = input.getAttribute('data-list').replace(/,/g, '').split(' ');
+
+					regex = /[\w-]+/g;
+
+					value = input.value.match(regex);
+
+					for (var i = 0; i < value.length; i++) {
+						id = proposedTags.indexOf(value[i]);
+
+						if (id !== -1)
+							proposedTags.splice(id, 1);
+					}
+
+					awesomplete.list = proposedTags;
+				});
+			</script>
+		{/if}
 	</body>
 </html>
