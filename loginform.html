@@ -5,9 +5,7 @@
 	</head>
 
 	<body{if="ban_canLogin()"} onload="document.loginform.login.focus();"{/if}>
-		<header>
-			{include="page.header"}
-		</header>
+		{include="page.header"}
 
 		<div id="headerform">
 			{if="!ban_canLogin()"}
