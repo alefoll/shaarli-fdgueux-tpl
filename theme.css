@@ -259,7 +259,7 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	z-index: 1;
+	z-index: 10;
 	/*overflow: hidden;*/
 	height: 56px;
 	position: fixed;
@@ -338,7 +338,7 @@ header {
 	line-height: 32px;
 	display: flex;
 	justify-content: space-between;
-	padding: 0 8px;
+	padding: 0 0 0 8px;
 	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 	margin-right: 8px;
 }
@@ -351,12 +351,34 @@ header {
 	top: 32px;
 }
 
+.header--search_submit {
+	padding: 4px 8px;
+}
+
 .header-separator {
 	padding-top: 56px;
 }
 
 .cards--container {
 	margin: 2% 2% 0;
+}
+
+.card--backdrop {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	border-radius: 2px;
+	background-color: #212121;
+	opacity: 0;
+	transition: opacity 450ms ease 0s;
+	z-index: -1;
+}
+
+.card--backdrop-on {
+	opacity: 0.68;
+	z-index: 1;
 }
 
 .grid-sizer, .column3 { width: 32%; }
@@ -366,10 +388,17 @@ header {
 	background-color: #ffffff;
 	margin-bottom: 2%;
 	border-radius: 2px;
+	overflow: hidden;
 }
 
 .card.private {
 	background-color: #ff5252;
+}
+
+.card--container {
+	display: flex;
+	flex-direction: column;
+	min-height: 200px;
 }
 
 .card--title {
@@ -426,16 +455,40 @@ header {
 	padding: 16px;
 }
 
-.card--bottom {
+.card--info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	border-top: 1px solid rgba(0, 0, 0, 0.1);
 	height: 36px;
 	padding: 8px;
 }
 
-.card--info {
-	display: flex;
-	justify-content: space-between;
+.card--bottom {
+	background-color: #fff;
+	justify-content: center;
 	align-items: center;
+	padding: 18px 0 0 0;
+	display: flex;
+	z-index: 5;
+	position: absolute;
+	width: 100%;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #e0e0e0;
+	visibility: hidden;
+	transform: translate3d(0px, 100%, 0px);
+	transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
+}
+
+.card--bottom-on {
+	transform: translate3d(0px, -100%, 0px);
+	visibility: visible;
+}
+
+.card--bottom img {
+	height: 150px;
+	width: 150px;
 }
 
 .card--tags {

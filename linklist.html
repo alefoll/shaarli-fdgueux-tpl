@@ -34,6 +34,8 @@
 
 			{loop="links"}
 				<div class="card link{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
+					<div class="card--backdrop"></div>
+
 					<div class="card--container">
 						<a id="{$value.linkdate|smallHash}"></a>
 
@@ -67,7 +69,9 @@
 							</div>
 						{/if}
 
-						<div class="card--info card--bottom">
+						<div class="flex"></div>
+
+						<div class="card--info">
 							<div class="card--admin">
 								{if="isLoggedIn()"}
 									<form method="GET">
@@ -106,6 +110,8 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="card--bottom"></div>
 				</div>
 			{/loop}
 		</div>
@@ -115,25 +121,9 @@
 		{include="page.footer"}
 
 		<script>
-			function remove_qrcode() {
-				var elem = document.getElementById("permalinkQrcode");
-
-				if (elem)
-					elem.parentNode.removeChild(elem);
-
-				return false;
-			}
-
-			function isCanvasSupported() {
-				var elem = document.createElement('canvas');
-
-				return !!(elem.getContext && elem.getContext('2d'));
-			}
-
-			function showQrCode(caller, loading)
-			{
-				if(!isCanvasSupported())
-					return true;
+			function showQrCode(caller, loading) {
+				var qrDiv     = document.createElement('div'),
+				    permalink = caller.getAttribute('data-permalink');
 
 				// Dynamic javascript lib loading: We only load qr.js if the QR code icon is clicked:
 				if (typeof(qr) == 'undefined') { // Load qr.js only if not present.
@@ -154,23 +144,31 @@
 					return false;
 				}
 
-				remove_qrcode();
+				while(!(/card[^--]/.test(caller.className)) && caller !== document.body)
+					caller = caller.parentNode;
 
-				var element = document.createElement('div');
+				var backdrop = caller.querySelector('.card--backdrop'),
+				    bottom   = caller.querySelector('.card--bottom');
 
-				element.id = "permalinkQrcode";
-				element.addEventListener('click', remove_qrcode);
+				if (!bottom.hasChildNodes()) {
+					var image = qr.image({ size: 8, value: permalink });
 
-				var image = qr.image({ size: 8, value: caller.getAttribute('data-permalink') });
+					if (image)
+						bottom.appendChild(image);
+					else
+						bottom.innerHTML = "Your browser does not seem to be HTML5 compatible.";
 
-				if (image) {
-					element.appendChild(image);
-					element.innerHTML+= "<br>Click to close";
-
-					caller.parentNode.appendChild(element);
-				} else {
-					element.innerHTML="Your browser does not seem to be HTML5 compatible.";
 				}
+
+				backdrop.classList.add('card--backdrop-on');
+				bottom.classList.add('card--bottom-on');
+
+				caller.addEventListener('click', function(evt) {
+					caller.removeEventListener(evt.type, arguments.callee, true);
+
+					backdrop.classList.remove('card--backdrop-on');
+					bottom.classList.remove('card--bottom-on');
+				}, true);
 
 				return false;
 			}
@@ -193,6 +191,7 @@
 
 		{if="count($links)>1"}
 			<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
+
 			<script>
 				var masonry = new Masonry('.cards--container', {
 					itemSelector: '.card',

@@ -79,7 +79,7 @@
 
 		<form class="header--search_search" method="GET" class="searchform" name="searchform">
 			<input type="text" tabindex="1" name="searchterm" placeholder="Search text" value="">
-			<input type="submit" value="Search">
+			<input class="header--search_submit" type="image" src="assets/magnify-dark.png" value="Search" height="24" width="24">
 		</form>
 
 		<img src="assets/tag.png" alt="Filter by tag" class="header--search_icon">
@@ -91,7 +91,7 @@
 				{loop="$tags"}<option>{$key}</option>{/loop}
 			</datalist>
 
-			<input type="submit" value="Search">
+			<input class="header--search_submit" type="image" src="assets/tag-dark.png" value="Search" height="24" width="24">
 		</form>
 	</div>
 
