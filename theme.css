@@ -363,6 +363,21 @@ header {
 	margin: 2% 2% 0;
 }
 
+.grid-sizer, .column3 { width: 32%; }
+.gutter-sizer { width: 2% }
+
+.card {
+	position: relative;
+	background-color: #ffffff;
+	margin-bottom: 2%;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+.card.private {
+	background-color: #ff5252;
+}
+
 .card--backdrop {
 	position: absolute;
 	top: 0px;
@@ -379,20 +394,6 @@ header {
 .card--backdrop-on {
 	opacity: 0.68;
 	z-index: 1;
-}
-
-.grid-sizer, .column3 { width: 32%; }
-.gutter-sizer { width: 2% }
-
-.card {
-	background-color: #ffffff;
-	margin-bottom: 2%;
-	border-radius: 2px;
-	overflow: hidden;
-}
-
-.card.private {
-	background-color: #ff5252;
 }
 
 .card--container {
