@@ -468,7 +468,6 @@ header {
 	background-color: #fff;
 	justify-content: center;
 	align-items: center;
-	padding: 12px;
 	display: flex;
 	z-index: 5;
 	position: absolute;
@@ -489,6 +488,7 @@ header {
 .card--bottom img {
 	height: 150px;
 	width: 150px;
+	padding: 12px;
 }
 
 .card--tags {
