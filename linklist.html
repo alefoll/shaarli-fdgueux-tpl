@@ -97,15 +97,15 @@
 
 								<a
 									class="card--social_a"
-									href="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d={$scripturl|urlencode}%3F{$value.linkdate|smallHash}"
+									href="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d={$value.url|urlencode}"
 									onclick="return showQrCode(this);"
-									data-permalink="{$scripturl}?{$value.linkdate|smallHash}"
+									data-permalink="{$redirector}{$value.url}"
 								>
-									<img class="card--social_img" src="assets/qrcode.png" alt="QR-Code" title="{function="strftime('%c', $value.timestamp)"}">
+									<img class="card--social_img" src="assets/qrcode.png" alt="QR-Code" title="QR-Code">
 								</a>
 
 								<a class="card--social_a" href="?{$value.linkdate|smallHash}">
-									<img class="card--social_img" src="assets/share-variant.png" alt="Permalink">
+									<img class="card--social_img" src="assets/share-variant.png" alt="Permalink" title="Permalink">
 								</a>
 							</div>
 						</div>
