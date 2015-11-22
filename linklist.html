@@ -47,7 +47,7 @@
 
 						<div class="card--subtitle">
 							{if="!$GLOBALS['config']['HIDE_TIMESTAMPS'] || isLoggedIn()"}
-								<span>{function="strftime('%e %B %Y at%k:%M:%S', $value.timestamp)"}</span>
+								<span>{function="strftime('%e %B %Y at %k:%M:%S', $value.timestamp)"}</span>
 							{/if}
 						</div>
 
