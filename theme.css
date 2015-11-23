@@ -503,6 +503,10 @@ header {
 	-webkit-filter: blur(0);
 }
 
+.card--thumbnail .onload {
+	display: none;
+}
+
 .card--content {
 	padding: 16px;
 }

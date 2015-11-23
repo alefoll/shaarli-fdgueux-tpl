@@ -120,6 +120,20 @@
 
 		{include="page.footer"}
 
+		{if="count($links)>1"}
+			<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
+
+			<script>
+				var masonry = new Masonry('.cards--container', {
+					itemSelector: '.card',
+					columnWidth: '.grid-sizer',
+					gutter: '.gutter-sizer',
+					transitionDuration: 0,
+					percentPosition: true
+				});
+			</script>
+		{/if}
+
 		<script>
 			function showQrCode(caller, loading) {
 				var qrDiv     = document.createElement('div'),
@@ -176,10 +190,13 @@
 				var thumbnail = document.querySelectorAll('.card--thumbnail img');
 
 				for(var i = 0; i < thumbnail.length; i++) {
-					// Make new img tag, BUG : masonry gap after yt card only
 					if (/youtube.com/.test(thumbnail[i].src)) {
 						thumbnail[i].src = thumbnail[i].src.replace("/default.jpg", "/hqdefault.jpg");
 						thumbnail[i].classList.add("unblur");
+
+						thumbnail[i].onload = function() {
+							masonry.layout();
+						}
 					}
 				}
 			}
@@ -188,19 +205,5 @@
 		</script>
 
 		<script src="../../inc/awesomplete.min.js"></script>
-
-		{if="count($links)>1"}
-			<script src="vendor/masonry/dist/masonry.pkgd.min.js"></script>
-
-			<script>
-				var masonry = new Masonry('.cards--container', {
-					itemSelector: '.card',
-					columnWidth: '.grid-sizer',
-					gutter: '.gutter-sizer',
-					transitionDuration: 0,
-					percentPosition: true
-				});
-			</script>
-		{/if}
 	</body>
 </html>
