@@ -7,65 +7,70 @@
 
 	<a class="header--title" href="{$titleLink}">{$shaarlititle}</a>
 
-	<div class="header--menus">
+	<div class="header--menu">
 		{if="!empty($_GET['source']) && $_GET['source']=='bookmarklet'"}
 			{ignore} When called as a popup from bookmarklet, do not display menu. {/ignore}
 		{else}
+			<a class="header--menu_a header--menu_home" href="?">
+				<img src="assets/home.png" alt="Home" class="header--menu_icon">
+				<span class="header--menu_button button button--raised little-button">Home</span>
+			</a>
+
 			{if="isLoggedIn()"}
-				<a class="header--menu" href="?do=logout">
+				<a class="header--menu_a" href="?do=logout">
 					<img src="assets/logout.png" alt="Logout" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Logout</span>
 				</a>
 
-				<a class="header--menu" href="?do=tools">
+				<a class="header--menu_a" href="?do=tools">
 					<img src="assets/wrench.png" alt="Tools" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Tools</span>
 				</a>
 
-				<a class="header--menu" href="?do=addlink">
+				<a class="header--menu_a" href="?do=addlink">
 					<img src="assets/bookmark-outline-plus.png" alt="Add link" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Add link</span>
 				</a>
 			{elseif="$GLOBALS['config']['OPEN_SHAARLI']"}
-				<a class="header--menu" href="?do=tools">
+				<a class="header--menu_a" href="?do=tools">
 					<img src="assets/wrench.png" alt="Tools" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Tools</span>
 				</a>
 
-				<a class="header--menu" href="?do=addlink">
+				<a class="header--menu_a" href="?do=addlink">
 					<img src="assets/bookmark-outline-plus.png" alt="Add link" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Add link</span>
 				</a>
 			{else}
-				<a class="header--menu" href="?do=login">
+				<a class="header--menu_a" href="?do=login">
 					<img src="assets/login.png" alt="Login" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">Login</span>
 				</a>
 			{/if}
 
-			<a class="header--menu" href="{$feedurl}?do=rss{$searchcrits}" class="nomobile">
+			<a class="header--menu_a" href="{$feedurl}?do=rss{$searchcrits}" class="nomobile">
 				<img src="assets/rss-box.png" alt="RSS Feed" class="header--menu_icon">
 				<span class="header--menu_button button button--raised little-button">RSS Feed</span>
 			</a>
 
 			{if="$GLOBALS['config']['SHOW_ATOM']"}
-				<a class="header--menu" href="{$feedurl}?do=atom{$searchcrits}" class="nomobile">
+				<a class="header--menu_a" href="{$feedurl}?do=atom{$searchcrits}" class="nomobile">
 					<img src="assets/.png" alt="ATOM Feed" class="header--menu_icon">
 					<span class="header--menu_button button button--raised little-button">ATOM Feed</span>
 				</a>
 			{/if}
 
-			<a class="header--menu" href="?do=tagcloud">
+			<a class="header--menu_a" href="?do=tagcloud">
 				<img src="assets/cloud.png" alt="Tag cloud" class="header--menu_icon">
 				<span class="header--menu_button button button--raised little-button">Tag cloud</span>
 			</a>
 
-			<a class="header--menu" href="?do=picwall{$searchcrits}">
+			<a class="header--menu_a" href="?do=picwall{$searchcrits}">
 				<img src="assets/panorama.png" alt="Picture wall" class="header--menu_icon">
 				<span class="header--menu_button button button--raised little-button">Picture wall</span>
 			</a>
 
-			<a class="header--menu" href="?do=daily">
+			<a class="header--menu_a" href="?do=daily">
 				<img src="assets/newspaper.png" alt="Daily" class="header--menu_icon">
 				<span class="header--menu_button button button--raised little-button">Daily</span>
 			</a>

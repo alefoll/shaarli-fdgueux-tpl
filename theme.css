@@ -286,12 +286,12 @@ header {
 	margin-right: 16px;
 }
 
-.header--menus,
-.header--menu {
+.header--menu,
+.header--menu_a {
 	display: inline-flex;
 }
 
-.header--menus {
+.header--menu {
 	margin: 0 4px;
 }
 
@@ -300,10 +300,17 @@ header {
 .header--search_icon {
 	height: 24px;
 	width: 24px;
-	padding: 16px 12px;
-	margin: 0 4px;
+	padding: 8px;
+	margin: 8px 8px;
 	cursor: pointer;
 	display: none;
+	border-radius: 3px;
+}
+
+.header--sandwich_icon:hover,
+.header--menu_icon:hover,
+.header--search_icon:hover {
+	box-shadow: 0 0 6px #ffffff;
 }
 
 .header--menu_button {
@@ -318,11 +325,55 @@ header {
 	text-decoration: none;
 }
 
-.header--menu_button:hover,
-.header--menu_button:active {
+.header--menu_button:hover {
 	color: #ffffff;
 	background-color: #2196F3;
 	text-decoration: none;
+}
+
+.header--menu_home {
+	display: none;
+}
+
+.header--mobile {
+	display: block !important;
+	background-color: #fafafa;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	top: 56px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.header--mobile .header--menu_a {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.header--mobile .header--menu_button {
+	display: block;
+	box-shadow: none;
+	color: #000000;
+	background-color: transparent;
+}
+
+.header--mobile .header--menu_button:hover {
+	background-color: transparent;
+	color: #000000;
+}
+
+.header--mobile .header--menu_icon {
+	filter: invert(1);
+	-webkit-filter: invert(1);
+}
+
+.header--mobile .header--menu_icon:hover {
+	box-shadow: none;
 }
 
 .header--search {
@@ -557,6 +608,13 @@ header {
 	background-color: #c62828;
 }
 
+.card--social {
+	display: inline-flex;
+	align-items: center;
+	justify-content: space-between;
+	min-width: 54px;
+}
+
 .card--social_a {
 	height: 24px;
 	width: 24px;
@@ -617,14 +675,17 @@ header {
 	}
 
 	.header--logo,
-	.header--menus {
+	.header--menu {
 		display: none;
+	}
+
+	.header--menu_home {
+		display: block;
 	}
 
 	.header--sandwich_icon {
 		display: flex;
 	}
-
 
 	.header--title {
 		margin-left: 8px;

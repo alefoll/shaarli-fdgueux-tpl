@@ -176,6 +176,7 @@
 				var thumbnail = document.querySelectorAll('.card--thumbnail img');
 
 				for(var i = 0; i < thumbnail.length; i++) {
+					// Make new img tag, BUG : masonry gap after yt card only
 					if (/youtube.com/.test(thumbnail[i].src)) {
 						thumbnail[i].src = thumbnail[i].src.replace("/default.jpg", "/hqdefault.jpg");
 						thumbnail[i].classList.add("unblur");
