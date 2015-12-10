@@ -201,11 +201,11 @@ input[type="checkbox"]:checked + label::after {
 	transform-origin: left top 0px;
 }
 
-.input-container input[value=""] + label {
+/*.input-container input[value=""] + label {
 	transform: translate3d(0px, 28px, 0px) scale(1);
 	transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1) 0s;
 	transform-origin: left top 0px;
-}
+}*/
 
 .input-container input,
 .input-container textarea {
