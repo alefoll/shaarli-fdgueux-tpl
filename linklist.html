@@ -89,20 +89,16 @@
 							</div>
 
 							<div class="card--social">
-								{if="$GLOBALS['config']['ARCHIVE_ORG']"}
-									<span class="linkarchive">
-										<a href="https://web.archive.org/web/{$value.url}">archive</a> -
-									</span>
+								{if="in_array('qrcode', $GLOBALS['config']['ENABLED_PLUGINS'])"}
+									<a
+										class="card--social_a"
+										href="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d={$value.url|urlencode}"
+										onclick="return showQrCode(this);"
+										data-permalink="{$redirector}{$value.url}"
+									>
+										<img class="card--social_img" src="assets/qrcode.png" alt="QR-Code" title="QR-Code">
+									</a>
 								{/if}
-
-								<a
-									class="card--social_a"
-									href="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d={$value.url|urlencode}"
-									onclick="return showQrCode(this);"
-									data-permalink="{$redirector}{$value.url}"
-								>
-									<img class="card--social_img" src="assets/qrcode.png" alt="QR-Code" title="QR-Code">
-								</a>
 
 								<a class="card--social_a" href="?{$value.linkdate|smallHash}">
 									<img class="card--social_img" src="assets/share-variant.png" alt="Permalink" title="Permalink">
@@ -146,7 +142,7 @@
 					if (!loading) { // If javascript lib is still loading, do not append script to body.
 						var element = document.createElement("script");
 
-						element.src = "inc/qr-1.1.3.min.js";
+						element.src = "plugins/qrcode/qr-1.1.3.min.js";
 
 						document.body.appendChild(element);
 					}

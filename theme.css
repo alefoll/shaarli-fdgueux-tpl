@@ -616,12 +616,13 @@ header {
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
-	min-width: 54px;
+	/*min-width: 54px;*/
 }
 
 .card--social_a {
 	height: 24px;
 	width: 24px;
+	margin-right: 4px;
 	display: inline-flex;
 }
 
