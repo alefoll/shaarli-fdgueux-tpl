@@ -414,7 +414,7 @@ header {
 	margin: 2% 2% 0;
 }
 
-.grid-sizer, .column3 { width: 32%; }
+.grid-sizer, .column3 { width: 23.5%; }
 .gutter-sizer { width: 2% }
 
 .card {
@@ -654,6 +654,10 @@ header {
 }
 
 @media (max-width: 1450px) {
+	.grid-sizer, .column3 {
+		width: 32%;
+	}
+
 	.header--search_search,
 	.header--search_tag {
 		display: none;
@@ -675,7 +679,7 @@ header {
 }
 
 @media (max-width: 850px) {
-	.grid-sizer, .link {
+	.grid-sizer, .column3 {
 		width: 49%;
 	}
 
