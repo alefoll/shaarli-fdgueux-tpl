@@ -33,7 +33,7 @@
 			{/if}
 
 			{loop="links"}
-				<div class="card link{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
+				<div class="card{if="count($links)>1"} column3{/if}{if="$value.class"} {$value.class}{/if}">
 					<div class="card--backdrop"></div>
 
 					<div class="card--container">
@@ -55,6 +55,8 @@
 							<div class="card--content">{$value.description}</div>
 						{/if}
 
+						<div class="flex"></div>
+
 						{if="$value.tags"}
 							<div class="card--tags">
 								{loop="value.taglist"}
@@ -68,8 +70,6 @@
 								{/loop}
 							</div>
 						{/if}
-
-						<div class="flex"></div>
 
 						<div class="card--info">
 							<div class="card--admin">
@@ -130,58 +130,62 @@
 			</script>
 		{/if}
 
-		<script>
-			function showQrCode(caller, loading) {
-				var qrDiv     = document.createElement('div'),
-				    permalink = caller.getAttribute('data-permalink');
+		{if="in_array('qrcode', $GLOBALS['config']['ENABLED_PLUGINS'])"}
+			<script>
+				function showQrCode(caller, loading) {
+					var qrDiv     = document.createElement('div'),
+					    permalink = caller.getAttribute('data-permalink');
 
-				// Dynamic javascript lib loading: We only load qr.js if the QR code icon is clicked:
-				if (typeof(qr) == 'undefined') { // Load qr.js only if not present.
-					loading = loading || false;
+					// Dynamic javascript lib loading: We only load qr.js if the QR code icon is clicked:
+					if (typeof(qr) == 'undefined') { // Load qr.js only if not present.
+						loading = loading || false;
 
-					if (!loading) { // If javascript lib is still loading, do not append script to body.
-						var element = document.createElement("script");
+						if (!loading) { // If javascript lib is still loading, do not append script to body.
+							var element = document.createElement("script");
 
-						element.src = "plugins/qrcode/qr-1.1.3.min.js";
+							element.src = "plugins/qrcode/qr-1.1.3.min.js";
 
-						document.body.appendChild(element);
+							document.body.appendChild(element);
+						}
+
+						setTimeout(function() {
+							showQrCode(caller, true);
+						}, 200);
+
+						return false;
 					}
 
-					setTimeout(function() {
-						showQrCode(caller, true);
-					}, 200);
+					while(!(/card[^--]/.test(caller.className)) && caller !== document.body)
+						caller = caller.parentNode;
+
+					var backdrop = caller.querySelector('.card--backdrop'),
+					    bottom   = caller.querySelector('.card--bottom');
+
+					if (!bottom.hasChildNodes()) {
+						var image = qr.image({ size: 8, value: permalink });
+
+						if (image)
+							bottom.appendChild(image);
+						else
+							bottom.innerHTML = "Your browser does not seem to be HTML5 compatible.";
+					}
+
+					backdrop.classList.add('card--backdrop-on');
+					bottom.classList.add('card--bottom-on');
+
+					caller.addEventListener('click', function(evt) {
+						caller.removeEventListener(evt.type, arguments.callee, true);
+
+						backdrop.classList.remove('card--backdrop-on');
+						bottom.classList.remove('card--bottom-on');
+					}, true);
 
 					return false;
 				}
+			</script>
+		{/if}
 
-				while(!(/card[^--]/.test(caller.className)) && caller !== document.body)
-					caller = caller.parentNode;
-
-				var backdrop = caller.querySelector('.card--backdrop'),
-				    bottom   = caller.querySelector('.card--bottom');
-
-				if (!bottom.hasChildNodes()) {
-					var image = qr.image({ size: 8, value: permalink });
-
-					if (image)
-						bottom.appendChild(image);
-					else
-						bottom.innerHTML = "Your browser does not seem to be HTML5 compatible.";
-				}
-
-				backdrop.classList.add('card--backdrop-on');
-				bottom.classList.add('card--bottom-on');
-
-				caller.addEventListener('click', function(evt) {
-					caller.removeEventListener(evt.type, arguments.callee, true);
-
-					backdrop.classList.remove('card--backdrop-on');
-					bottom.classList.remove('card--bottom-on');
-				}, true);
-
-				return false;
-			}
-
+		<script>
 			function thumbnailYoutubeHD() {
 				var thumbnail = document.querySelectorAll('.card--thumbnail img');
 

@@ -99,6 +99,15 @@ input {
 	background-color: #2196f3;
 }
 
+.button--login {
+	color: #ffffff;
+	background-color: #43a047;
+}
+
+.button--login:hover {
+	background-color: #43a047;
+}
+
 .button--save {
 	color: #43a047;
 }
@@ -423,6 +432,7 @@ header {
 	margin-bottom: 2%;
 	border-radius: 2px;
 	overflow: hidden;
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .card.private {
@@ -643,6 +653,16 @@ header {
 	margin-bottom: 0px;
 }
 
+.login-card {
+	width: 400px;
+	margin: 36px auto;
+}
+
+.login--submit {
+	margin-top: 16px;
+	float: right;
+}
+
 #editcardform label {
 	color: #000000;
 }
@@ -703,7 +723,7 @@ header {
 }
 
 @media (max-width: 500px) {
-	.grid-sizer, .link {
+	.grid-sizer, .card {
 		width: 100%;
 	}
 }

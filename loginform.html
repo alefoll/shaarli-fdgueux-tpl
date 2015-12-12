@@ -7,30 +7,41 @@
 	<body{if="ban_canLogin()"} onload="document.loginform.login.focus();"{/if}>
 		{include="page.header"}
 
-		<div id="headerform">
-			{if="!ban_canLogin()"}
-				You have been banned from login after too many failed attempts. Try later.
-			{else}
-				<form method="post" name="loginform">
-					<label for="login">Login: </label>
-					<input type="text" id="login" name="login" tabindex="1">
+		<div class="card login-card">
+			<div class="card--container">
+				<div class="card--title">
+					Login
+				</div>
 
+				<div class="card--content">
+					{if="!ban_canLogin()"}
+						You have been banned from login after too many failed attempts. Try later.
+					{else}
+						<form method="post" name="loginform">
+							<div class="input-container">
+								<input id="login--username" type="text" name="login" tabindex="1" required>
+								<label for="login--username">Username</label>
+							</div>
 
-					<label for="password">Password: </label>
-					<input type="password" id="password" name="password" tabindex="2">
+							<div class="input-container">
+								<input id="login--password" type="password" name="password" tabindex="2" required>
+								<label for="login--password">Password</label>
+							</div>
 
-					<input type="submit" value="Login" class="bigbutton" tabindex="4">
+							<input type="checkbox" checked="checked" name="longlastingsession" id="login--remember">
+							<label for="login--remember" tabindex="3">Stay signed in (Do not check on public computers)</label>
 
-					<label for="longlastingsession">
-					<input type="checkbox" name="longlastingsession" id="longlastingsession" tabindex="3">
-					Stay signed in (Do not check on public computers)</label>
-					<input type="hidden" name="token" value="{$token}">
+							<input type="submit" value="Login" class="button button--raised button--login login--submit" tabindex="4">
 
-					{if="$returnurl"}
-						<input type="hidden" name="returnurl" value="{$returnurl}">
+							<input type="hidden" name="token" value="{$token}">
+
+							{if="$returnurl"}
+								<input type="hidden" name="returnurl" value="{$returnurl}">
+							{/if}
+						</form>
 					{/if}
-				</form>
-			{/if}
+				</div>
+			</div>
 		</div>
 
 	{include="page.footer"}
