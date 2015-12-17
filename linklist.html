@@ -192,9 +192,10 @@
 				for(var i = 0; i < thumbnail.length; i++) {
 					if (/youtube.com/.test(thumbnail[i].src)) {
 						thumbnail[i].src = thumbnail[i].src.replace("/default.jpg", "/hqdefault.jpg");
-						thumbnail[i].classList.add("unblur");
+						thumbnail[i].classList.add("blur");
 
 						thumbnail[i].onload = function() {
+							this.classList.remove("blur");
 							masonry.layout();
 						}
 					}

@@ -504,13 +504,11 @@ header {
 .card--thumbnail img {
 	width: 100%;
 	height: 100%;
-	filter: blur(5px);
-	-webkit-filter: blur(5px);
 }
 
-.card--thumbnail .unblur {
-	filter: blur(0);
-	-webkit-filter: blur(0);
+.card--thumbnail .blur {
+	filter: blur(5px);
+	-webkit-filter: blur(5px);
 }
 
 .card--thumbnail .onload {
